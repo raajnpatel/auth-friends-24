@@ -16,6 +16,8 @@ const Login = (props) => {
             .post('http://localhost:5000/api/login', creds)
             .then(res => {
                 console.log(res);
+                // using local storage for token to persist through refresh
+                localStorage.setItem('token', res.data.payload);
         })
             .catch(err => console.log(err));
     };
