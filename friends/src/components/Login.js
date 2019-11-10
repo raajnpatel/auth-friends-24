@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const Login = (props) => {
+const Login = (history) => {
     const [creds, setCreds] = useState({username: "", password: ""});
 
     // allows for input on login fields
@@ -18,6 +18,7 @@ const Login = (props) => {
                 console.log(res);
                 // using local storage for token to persist through refresh
                 localStorage.setItem('token', res.data.payload);
+                history.push("/friends");
         })
             .catch(err => console.log(err));
     };
