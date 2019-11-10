@@ -16,11 +16,22 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
   }}/>
 };
 
+const protectRoute = Component => props => {
+    if(localStorage.getItem('token')) {
+        return <Component {...props}/>;
+    } else {
+        return <Redirect to="/login"/>
+    }
+};
+
+const ProtectedFriends = protectRoute(Friends);
+
 function App() {
   return (
     <div className="App">
       <Route path="/login" component={Login}/>
-      <ProtectedRoute path="/friends" component={Friends}/>
+      {/*<ProtectedRoute path="/friends" component={Friends}/>*/}
+      <ProtectedRoute path="/friends" component={ProtectedFriends}/>
     </div>
   );
 }
