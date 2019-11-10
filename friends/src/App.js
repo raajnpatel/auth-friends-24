@@ -30,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <Route path="/login" component={Login}/>
-      {/*<ProtectedRoute path="/friends" component={Friends}/>*/}
-      <ProtectedRoute path="/friends" component={ProtectedFriends}/>
+      <ProtectedRoute path="/friends" component={Friends}/>
+      { /*<Route path="/friends" component={ProtectedFriends}/>*/}
     </div>
   );
 }
