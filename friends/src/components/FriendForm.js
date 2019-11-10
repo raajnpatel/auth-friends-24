@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
-const FriendForm = props => {
-    const [friend, setFriend] = useState({name: "", email: "", age: ""});
+const FriendForm = ({submitFriend}) => {
+    const [friend, setFriend] = useState({name: "", age: "", email: ""});
     const handleChange = e => setFriend({...friend, [e.target.name]: e.target.value});
+    const handleSubmit = e => {
+        e.preventDefault();
+        submitFriend(friend);
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <input
                 name = "name"
                 placeholder="name"
@@ -12,15 +17,15 @@ const FriendForm = props => {
                 onChange={handleChange}
             />
             <input
-                name = "email"
-                placeholder="email"
-                value={friend.email}
-                onChange={handleChange}
-            />
-            <input
                 name = "age"
                 placeholder="age"
                 value={friend.age}
+                onChange={handleChange}
+            />
+            <input
+                name = "email"
+                placeholder="email"
+                value={friend.email}
                 onChange={handleChange}
             />
             <button type="submit">Add Friend</button>
