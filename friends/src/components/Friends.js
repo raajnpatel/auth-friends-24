@@ -21,7 +21,7 @@ const Friends = (props) => {
     const addFriend = friend => {
         axiosWithAuth()
             .post('http://localhost:5000/api/friends', friend)
-            .then(res => setFriendsList(res.data))
+            .then(res =>console.log(res) || setFriendsList(res.data))
             .catch(err => console.log(err.response));
     }
 
