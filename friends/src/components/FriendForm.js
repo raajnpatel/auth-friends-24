@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const FriendForm = ({submitFriend}) => {
-    const [friend, setFriend] = useState({name: "", age: "", email: ""});
+const FriendForm = ({submitFriend, initialValues }) => {
+    const [friend, setFriend] = useState(initialValues || {name: "", age: "", email: ""});
     const handleChange = e => setFriend({...friend, [e.target.name]: e.target.value});
     const handleSubmit = e => {
         e.preventDefault();
