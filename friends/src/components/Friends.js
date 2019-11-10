@@ -3,7 +3,7 @@ import axios from 'axios';
 import axiosWithAuth from '../uttils/axiosWithAuth';
 import FriendForm from './FriendForm';
 import FriendCard from "./FriendCard";
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 const Friends = (props) => {
     const [friendsList, setFriendsList] = useState([]);
@@ -30,7 +30,7 @@ const Friends = (props) => {
     const editFriend = friend => {
         axiosWithAuth()
             .put(`http://localhost:5000/api/friends/${friend.id}`, friend)
-            .then(res => console.log(res) || setFriendsList(res.data))
+            .then(res => console.log(res) || setFriendsList(res.data) || props.history.push("/friends"))
             .catch(err => console.log(err.response));
     };
 
@@ -55,6 +55,9 @@ const Friends = (props) => {
             <Route exact path="/friends/edit/:id" render={props => {
                 console.log(props);
                 const currentFriend = friendsList.find(friend => friend.id == props.match.params.id);
+                if (!currentFriend) {
+                    return <Redirect to="/friends"/>
+                }
                 return <FriendForm {...props} submitFriend={editFriend} initialValues = {currentFriend}/>
             }}/>
         </div>
