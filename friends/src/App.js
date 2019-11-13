@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Friends from "./components/Friends";
 
 import { Route, Link, Redirect } from 'react-router-dom';
+import Home from "./components/Home";
 
 
 // With protected Routes, you'll be redirected to another page without the if statement being truthy
@@ -30,6 +31,7 @@ const protectRoute = Component => props => {
 function App() {
     return (
         <div className="App">
+            <Route path="/" exact component={Home} />
             <Route path="/login" component={Login}/>
             <ProtectedRoute path="/friends" component={Friends}/>
         </div>
